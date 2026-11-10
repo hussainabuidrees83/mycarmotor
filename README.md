@@ -4,6 +4,12 @@
     hugo server            # معاينة على http://localhost:1313
     hugo --minify          # بناء الموقع النهائي في مجلد public/
 
+## النشر المجاني على GitHub Pages
+الموقع منشور من المستودع `hussainabuidrees83/mycarmotor` على:
+https://hussainabuidrees83.github.io/mycarmotor/
+
+كل تحديث إلى فرع `main` يشغّل بناء Hugo ونشر الموقع تلقائياً عبر GitHub Actions.
+
 ## تعديل رقمك
 افتح `hugo.toml` وغيّر `phone` و `whatsapp` (واتساب بصيغة دولية بدون + مثل 97333123456).
 
