@@ -1,1 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect width="800" height="600" fill="#2b3442"/><g fill="#fff" fill-opacity=".35"><path d="M150 380l50-100c10-20 30-32 52-32h296c22 0 42 12 52 32l50 100v60H150z"/><circle cx="270" cy="450" r="44"/><circle cx="530" cy="450" r="44"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title description">
+  <title id="title">الصورة غير متوفرة حالياً | Image currently unavailable</title>
+  <desc id="description">لا تتوفر صورة لهذه السيارة حالياً. No photo is currently available for this car.</desc>
+  <rect width="800" height="600" fill="#f3f5f8"/>
+  <g fill="none" stroke="#718096" stroke-linecap="round" stroke-linejoin="round" stroke-width="12">
+    <rect x="292" y="146" width="216" height="172" rx="20"/>
+    <circle cx="434" cy="199" r="20"/>
+    <path d="m308 290 58-62 45 45 28-29 53 53"/>
+  </g>
+  <text x="400" y="392" fill="#263449" font-family="Arial, Tahoma, sans-serif" font-size="30" font-weight="700" text-anchor="middle" direction="rtl">الصورة غير متوفرة حالياً</text>
+  <text x="400" y="440" fill="#526176" font-family="Arial, sans-serif" font-size="23" text-anchor="middle">Image currently unavailable</text>
+</svg>
