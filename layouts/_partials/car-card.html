@@ -1,0 +1,24 @@
+{{ $p := .Params }}
+{{ $imgs := partial "car-images.html" . }}
+<article class="card" data-title="{{ lower (printf "%s %s %s %v %s" .Title $p.brand $p.model $p.year $p.color) }}"
+  data-brand="{{ $p.brand }}" data-cond="{{ $p.condition }}" data-price="{{ $p.price }}" data-order="{{ $p.weight | default 0 }}">
+  <a href="{{ .RelPermalink }}" class="card-img">
+    <img src="{{ (index $imgs 0).card }}" alt="{{ .Title }}" loading="lazy" decoding="async" width="800" height="600">
+    <span class="badge {{ $p.condition }}">{{ i18n $p.condition }}</span>{{ if $p.offer }}<span class="badge offer">🔥 {{ i18n "offer" }}</span>{{ end }}
+  </a>
+  <div class="card-body">
+    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    <p class="muted">{{ $p.year }}{{ if eq $p.condition "used" }} • {{ lang.FormatNumber 0 $p.mileage }} {{ i18n "km" }}{{ end }}{{ with $p.transmission }} • {{ . }}{{ end }}</p>
+    <div class="price-row">
+      <div><small>{{ i18n "on_road_price" }}</small><div class="price">{{ lang.FormatNumber 0 $p.price }} <span>{{ i18n "currency" }}</span></div></div>
+      {{ with $p.monthly }}<div class="monthly"><small>{{ i18n "monthly" }}</small><b>{{ lang.FormatNumber 0 . }}</b> {{ i18n "currency" }}</div>{{ end }}
+    </div>
+    <div class="chips">
+      {{ with $p.warranty }}<span>🛡️ {{ i18n "warranty_short" }} {{ . }}</span>{{ end }}
+      {{ with $p.freeService }}<span>🔧 {{ i18n "free_service" }} {{ . }}</span>{{ end }}
+      {{ with $p.insReg }}<span>📋 {{ i18n "ins_reg" }} {{ . }}</span>{{ end }}
+      {{ if $p.tint }}<span>☀️ {{ i18n "tint" }}</span>{{ end }}
+      {{ if $p.undercoat }}<span>🧰 {{ i18n "undercoat" }}</span>{{ end }}
+    </div>
+  </div>
+</article>

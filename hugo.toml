@@ -1,0 +1,36 @@
+baseURL = "/"
+title = "Showroom"
+defaultContentLanguage = "ar"
+defaultContentLanguageInSubdir = false
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term"]
+
+# ====== بيانات التواصل (غيّرها إلى رقمك) ======
+# phone: للاتصال المباشر | whatsapp: رقم واتساب بالصيغة الدولية بدون + وبدون مسافات
+[params]
+  phone = "+97339550655"
+  whatsapp = "97339550655"
+
+[languages]
+  [languages.ar]
+    locale = "ar"
+    label = "العربية"
+    direction = "rtl"
+    weight = 1
+    title = "ماي كار موتور"
+    [languages.ar.params]
+      seller = "حسين أبوادريس"
+  [languages.en]
+    locale = "en"
+    label = "English"
+    direction = "ltr"
+    weight = 2
+    title = "My Car Motor"
+    [languages.en.params]
+      seller = "Hussain Abuidrees"
+
+# ====== معالجة الصور تلقائياً ======
+# صور السيارات في static/images/cars تُقرأ أيضاً كـ assets ليغيّر Hugo أحجامها (بطاقة/معرض/مصغرة)
+[[module.mounts]]
+  source = "static/images/cars"
+  target = "assets/cars"

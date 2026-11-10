@@ -1,0 +1,13 @@
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>{{ site.Title }}</strong></p>
+    <p>{{ i18n "sales_rep" }}: <strong>{{ site.Params.seller }}</strong></p>
+    <p>{{ i18n "contact_us" }}: <a href="tel:{{ site.Params.phone }}" dir="ltr">{{ site.Params.phone }}</a></p>
+    <p class="muted">© {{ now.Year }} {{ i18n "rights" }}</p>
+  </div>
+</footer>
+{{ if not (and .IsPage (eq .Type "cars")) }}
+<a class="float-wa" aria-label="WhatsApp" href="https://wa.me/{{ site.Params.whatsapp }}">
+  💬
+</a>
+{{ end }}

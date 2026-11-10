@@ -1,0 +1,73 @@
+{{ define "main" }}
+{{ $p := .Params }}
+{{ $imgs := partial "car-images.html" . }}
+{{ $msg := printf "%s: %s\n%s" (i18n "wa_intro") .Title .Permalink }}
+<div class="wrap detail">
+  <a class="back" href="{{ site.Home.RelPermalink }}#cars">← {{ i18n "back" }}</a>
+  <div class="detail-grid">
+    <div class="gallery">
+      <div class="slides" id="slides">
+        {{ range $i, $im := $imgs }}<div class="slide" data-full="{{ $im.full }}"><img src="{{ $im.large }}" alt="{{ $.Title }}" {{ if eq $i 0 }}fetchpriority="high"{{ else }}loading="lazy"{{ end }} decoding="async"></div>{{ end }}
+      </div>
+      <span class="badge {{ $p.condition }}">{{ i18n $p.condition }}</span>{{ if $p.offer }}<span class="badge offer">🔥 {{ i18n "offer" }}</span>{{ end }}
+      <span class="counter" id="counter">1 / {{ len $imgs }}</span>
+      <div class="thumbs" id="thumbs">
+        {{ range $i, $im := $imgs }}<img src="{{ $im.thumb }}" alt="" data-i="{{ $i }}" loading="lazy" width="160" height="120">{{ end }}
+      </div>
+    </div>
+
+    <div class="info">
+      <h1>{{ .Title }}</h1>
+      <p class="muted">{{ $p.year }}{{ if eq $p.condition "used" }} • {{ lang.FormatNumber 0 $p.mileage }} {{ i18n "km" }}{{ end }}</p>
+      <div class="price-box">
+        <div><small>{{ i18n "on_road_price" }}</small><div class="price big">{{ lang.FormatNumber 0 $p.price }} <span>{{ i18n "currency" }}</span></div></div>
+        {{ with $p.monthly }}<div class="monthly"><small>{{ i18n "monthly" }}</small><b>{{ lang.FormatNumber 0 . }}</b> {{ i18n "currency" }} <small>{{ i18n "per_month" }}</small></div>{{ end }}
+      </div>
+
+      <p class="seller">👤 {{ i18n "sales_rep" }}: <strong>{{ site.Params.seller }}</strong> · <a href="tel:{{ site.Params.phone }}" dir="ltr">{{ site.Params.phone }}</a></p>
+      <div class="actions cta">
+        <a class="btn btn-wa" href="https://wa.me/{{ site.Params.whatsapp }}?text={{ $msg | urlquery }}">{{ i18n "whatsapp" }}</a>
+        <a class="btn btn-primary" href="tel:{{ site.Params.phone }}">{{ i18n "call" }}</a>
+        <button class="btn btn-ghost" id="share" type="button" data-msg="{{ i18n "copied" }}" data-title="{{ .Title }}">{{ i18n "share" }}</button>
+      </div>
+
+      <h2>{{ i18n "benefits" }}</h2>
+      <ul class="benefits">
+        {{ with $p.warranty }}<li><span>🛡️</span><div><b>{{ i18n "warranty" }}</b><br>{{ . }}</div></li>{{ end }}
+        {{ with $p.insReg }}<li><span>📋</span><div><b>{{ i18n "ins_reg" }}</b><br>{{ . }}</div></li>{{ end }}
+        {{ with $p.freeService }}<li><span>🔧</span><div><b>{{ i18n "free_service" }}</b><br>{{ . }}</div></li>{{ end }}
+        {{ if $p.tint }}<li><span>☀️</span><div><b>{{ i18n "tint" }}</b><br>{{ i18n "included" }}</div></li>{{ end }}
+        {{ if $p.undercoat }}<li><span>🧰</span><div><b>{{ i18n "undercoat" }}</b><br>{{ i18n "included" }}</div></li>{{ end }}
+      </ul>
+
+      <h2>{{ i18n "specs" }}</h2>
+      <dl class="specs">
+        <div><dt>{{ i18n "condition" }}</dt><dd>{{ i18n $p.condition }}</dd></div>
+        <div><dt>{{ i18n "year" }}</dt><dd>{{ $p.year }}</dd></div>
+        {{ if eq $p.condition "used" }}<div><dt>{{ i18n "mileage" }}</dt><dd>{{ lang.FormatNumber 0 $p.mileage }} {{ i18n "km" }}</dd></div>{{ end }}
+        {{ with $p.engine }}<div><dt>{{ i18n "engine" }}</dt><dd>{{ . }}</dd></div>{{ end }}
+        {{ with $p.transmission }}<div><dt>{{ i18n "transmission" }}</dt><dd>{{ . }}</dd></div>{{ end }}
+        {{ with $p.fuel }}<div><dt>{{ i18n "fuel" }}</dt><dd>{{ . }}</dd></div>{{ end }}
+        {{ with $p.color }}<div><dt>{{ i18n "color" }}</dt><dd>{{ . }}</dd></div>{{ end }}
+      </dl>
+
+      {{ with .Content }}<h2>{{ i18n "description" }}</h2><div class="prose">{{ . }}</div>{{ end }}
+
+      <h2>{{ i18n "calculator" }}</h2>
+      <div class="calc" id="calc" data-price="{{ $p.price }}" data-cur="{{ i18n "currency" }}">
+        <label>{{ i18n "calc_down" }}: <b id="c-down-v">10</b>%<input id="c-down" type="range" min="0" max="50" step="5" value="10"></label>
+        <label>{{ i18n "calc_years" }}<select id="c-years"><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option><option>6</option><option>7</option></select></label>
+        <label>{{ i18n "calc_rate" }}<input id="c-rate" type="number" step="0.1" min="0" value="3.5"></label>
+        <div class="calc-out"><small>{{ i18n "monthly" }}</small><b id="c-out">—</b></div>
+        <p class="muted small">{{ i18n "calc_note" }}</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="sticky-cta">
+  <a class="btn btn-wa" href="https://wa.me/{{ site.Params.whatsapp }}?text={{ $msg | urlquery }}">{{ i18n "whatsapp" }}</a>
+  <a class="btn btn-primary" href="tel:{{ site.Params.phone }}">{{ i18n "call" }}</a>
+</div>
+{{ end }}

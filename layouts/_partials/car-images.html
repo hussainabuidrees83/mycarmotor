@@ -1,0 +1,18 @@
+{{/* صور السيارة: كل ملفات JPG داخل static/images/cars/<اسم-المجلد>/ تُصغَّر تلقائياً.
+     يرجع قائمة: card (بطاقة) / large (المعرض) / thumb (مصغرة) / full (تكبير) */}}
+{{ $slug := .Params.imagesFolder | default .File.ContentBaseName }}
+{{ $out := slice }}
+{{ range sort (resources.Match (printf "cars/%s/*" $slug)) "Name" }}
+  {{ if eq .MediaType.Type "image/jpeg" }}
+    {{ $card := .Fill "800x600 q80" }}
+    {{ $large := .Fit "1400x1050 q82" }}
+    {{ $thumb := .Fill "160x120 q70" }}
+    {{ $full := .Fit "2200x2200 q85" }}
+    {{ $out = $out | append (dict "card" $card.RelPermalink "large" $large.RelPermalink "thumb" $thumb.RelPermalink "full" $full.RelPermalink) }}
+  {{ end }}
+{{ end }}
+{{ if not $out }}
+  {{ $ph := "images/placeholder.svg" | relURL }}
+  {{ $out = slice (dict "card" $ph "large" $ph "thumb" $ph "full" $ph) }}
+{{ end }}
+{{ return $out }}

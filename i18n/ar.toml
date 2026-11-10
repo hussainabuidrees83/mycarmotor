@@ -1,0 +1,106 @@
+[tagline]
+other = "سيارات جديدة ومستعملة بأفضل الأسعار"
+[hero_sub]
+other = "تصفّح السيارات المتوفرة في المعرض، وتعرّف على الأسعار والضمان والقسط الشهري"
+[browse]
+other = "تصفّح السيارات"
+[search_ph]
+other = "ابحث: ماركة، موديل، سنة، لون…"
+[all_conditions]
+other = "جديدة ومستعملة"
+[new]
+other = "جديدة"
+[used]
+other = "مستعملة"
+[all_brands]
+other = "كل الماركات"
+[sort_new]
+other = "الترتيب الافتراضي"
+[price_low]
+other = "السعر: الأقل أولاً"
+[price_high]
+other = "السعر: الأعلى أولاً"
+[max_price]
+other = "أقصى سعر"
+[results]
+other = "سيارة"
+[no_results]
+other = "لا توجد سيارات مطابقة للبحث"
+[reset]
+other = "إعادة ضبط"
+[on_road_price]
+other = "السعر على الطريق"
+[monthly]
+other = "القسط الشهري"
+[per_month]
+other = "/ شهرياً"
+[warranty]
+other = "ضمان الوكيل المعتمد"
+[free_service]
+other = "صيانة مجانية"
+[tint]
+other = "عازل حراري وتضليل للزجاج"
+[undercoat]
+other = "أندرسيل مانع للصدأ"
+[included]
+other = "مشمول"
+[call]
+other = "اتصل الآن"
+[whatsapp]
+other = "واتساب"
+[share]
+other = "مشاركة"
+[copied]
+other = "تم نسخ الرابط"
+[benefits]
+other = "المزايا المشمولة"
+[specs]
+other = "المواصفات"
+[year]
+other = "السنة"
+[mileage]
+other = "المسافة المقطوعة"
+[fuel]
+other = "الوقود"
+[transmission]
+other = "ناقل الحركة"
+[color]
+other = "اللون"
+[engine]
+other = "المحرك"
+[condition]
+other = "الحالة"
+[description]
+other = "تفاصيل إضافية"
+[similar]
+other = "سيارات أخرى قد تعجبك"
+[calculator]
+other = "حاسبة القسط التقريبية"
+[calc_down]
+other = "الدفعة الأولى"
+[calc_years]
+other = "مدة التمويل (سنوات)"
+[calc_rate]
+other = "نسبة الفائدة السنوية %"
+[calc_note]
+other = "الحساب تقريبي للاستئناس فقط، والقسط النهائي حسب شروط البنك أو شركة التمويل."
+[currency]
+other = "د.ب"
+[km]
+other = "كم"
+[wa_intro]
+other = "السلام عليكم، أرغب بالاستفسار عن السيارة"
+[contact_us]
+other = "تواصل معنا"
+[back]
+other = "العودة للسيارات"
+[rights]
+other = "جميع الحقوق محفوظة"
+[offer]
+other = "عرض نوفمبر"
+[ins_reg]
+other = "التأمين والتسجيل"
+[warranty_short]
+other = "ضمان"
+[sales_rep]
+other = "مسؤول المبيعات"

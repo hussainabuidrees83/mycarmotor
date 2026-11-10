@@ -1,0 +1,17 @@
+{{ $cars := where site.RegularPages "Section" "cars" }}
+{{ $brands := slice }}{{ range $cars }}{{ $brands = $brands | append .Params.brand }}{{ end }}
+<section id="cars" class="wrap">
+  <div class="filters">
+    <input id="q" type="search" placeholder="{{ i18n "search_ph" }}" aria-label="search">
+    <select id="f-cond"><option value="">{{ i18n "all_conditions" }}</option><option value="new">{{ i18n "new" }}</option><option value="used">{{ i18n "used" }}</option></select>
+    <select id="f-brand"><option value="">{{ i18n "all_brands" }}</option>{{ range sort (uniq $brands) }}<option>{{ . }}</option>{{ end }}</select>
+    <input id="f-max" type="number" inputmode="numeric" min="0" placeholder="{{ i18n "max_price" }}">
+    <select id="f-sort"><option value="">{{ i18n "sort_new" }}</option><option value="asc">{{ i18n "price_low" }}</option><option value="desc">{{ i18n "price_high" }}</option></select>
+    <button id="f-reset" class="btn btn-ghost" type="button">{{ i18n "reset" }}</button>
+  </div>
+  <p class="count"><b id="count">{{ len $cars }}</b> {{ i18n "results" }}</p>
+  <div id="grid" class="grid">
+    {{ range $cars.ByWeight }}{{ partial "car-card.html" . }}{{ end }}
+  </div>
+  <p id="empty" class="empty" hidden>{{ i18n "no_results" }}</p>
+</section>

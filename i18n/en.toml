@@ -1,0 +1,106 @@
+[tagline]
+other = "New & used cars at the best prices"
+[hero_sub]
+other = "Browse the cars available in our showroom with prices, warranty and monthly instalments"
+[browse]
+other = "Browse cars"
+[search_ph]
+other = "Search: brand, model, year, colour…"
+[all_conditions]
+other = "New & used"
+[new]
+other = "New"
+[used]
+other = "Used"
+[all_brands]
+other = "All brands"
+[sort_new]
+other = "Default order"
+[price_low]
+other = "Price: low to high"
+[price_high]
+other = "Price: high to low"
+[max_price]
+other = "Max price"
+[results]
+other = "cars"
+[no_results]
+other = "No cars match your search"
+[reset]
+other = "Reset"
+[on_road_price]
+other = "On-road price"
+[monthly]
+other = "Monthly instalment"
+[per_month]
+other = "/ month"
+[warranty]
+other = "Authorized dealer warranty"
+[free_service]
+other = "Free maintenance"
+[tint]
+other = "Heat-insulating window tint"
+[undercoat]
+other = "Anti-rust undercoating"
+[included]
+other = "Included"
+[call]
+other = "Call now"
+[whatsapp]
+other = "WhatsApp"
+[share]
+other = "Share"
+[copied]
+other = "Link copied"
+[benefits]
+other = "Included benefits"
+[specs]
+other = "Specifications"
+[year]
+other = "Year"
+[mileage]
+other = "Mileage"
+[fuel]
+other = "Fuel"
+[transmission]
+other = "Transmission"
+[color]
+other = "Colour"
+[engine]
+other = "Engine"
+[condition]
+other = "Condition"
+[description]
+other = "More details"
+[similar]
+other = "You may also like"
+[calculator]
+other = "Instalment estimator"
+[calc_down]
+other = "Down payment"
+[calc_years]
+other = "Term (years)"
+[calc_rate]
+other = "Annual rate %"
+[calc_note]
+other = "Estimate only. The final instalment depends on the bank or finance company terms."
+[currency]
+other = "BHD"
+[km]
+other = "km"
+[wa_intro]
+other = "Hello, I'd like to ask about this car"
+[contact_us]
+other = "Contact us"
+[back]
+other = "Back to cars"
+[rights]
+other = "All rights reserved"
+[offer]
+other = "November offer"
+[ins_reg]
+other = "Insurance & registration"
+[warranty_short]
+other = "Warranty"
+[sales_rep]
+other = "Sales manager"

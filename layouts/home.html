@@ -1,0 +1,21 @@
+{{ define "main" }}
+<section class="banner">
+  <picture>
+    <source media="(max-width: 640px)" srcset="{{ "images/banner-mobile.jpg" | relURL }}" width="1000" height="800">
+    <img src="{{ "images/banner-desktop.jpg" | relURL }}" width="1920" height="720" alt="{{ site.Title }}" fetchpriority="high">
+  </picture>
+  <h1 class="sr-only">{{ site.Title }}</h1>
+</section>
+<section class="hero-bar">
+  <div class="wrap">
+    <p class="lead">{{ i18n "tagline" }}</p>
+    <p class="sub">{{ i18n "hero_sub" }}</p>
+    <div class="actions">
+      <a class="btn btn-primary btn-light" href="#cars">{{ i18n "browse" }}</a>
+      <a class="btn btn-wa" href="https://wa.me/{{ site.Params.whatsapp }}">{{ i18n "whatsapp" }}</a>
+      <a class="btn btn-ghost-light" href="tel:{{ site.Params.phone }}">{{ i18n "call" }}</a>
+    </div>
+  </div>
+</section>
+{{ partial "catalog.html" . }}
+{{ end }}
