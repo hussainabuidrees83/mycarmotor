@@ -4,9 +4,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
-  <meta name="description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ i18n "tagline" }}{{ end }}">
-  {{ if and .IsPage (eq .Type "cars") }}<meta property="og:image" content="{{ (index (partial "car-images.html" .) 0).large | absURL }}">{{ end }}
+  {{ $description := .Params.description | default (i18n "tagline") }}
+  {{ $shareImage := "images/banner-desktop.jpg" | absURL }}
+  {{ if and .IsPage (eq .Type "cars") }}{{ $shareImage = (index (partial "car-images.html" .) 0).large | absURL }}{{ end }}
+  <meta name="description" content="{{ $description }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ .Permalink }}">
   <meta property="og:title" content="{{ .Title }}">
+  <meta property="og:description" content="{{ $description }}">
+  <meta property="og:image" content="{{ $shareImage }}">
+  <meta property="og:image:alt" content="{{ .Title }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ .Title }}">
+  <meta name="twitter:description" content="{{ $description }}">
+  <meta name="twitter:image" content="{{ $shareImage }}">
+  <meta name="twitter:image:alt" content="{{ .Title }}">
   {{ range .AllTranslations }}<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">{{ end }}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
