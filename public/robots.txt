@@ -1,1 +1,4 @@
 User-agent: *
+Allow: /
+
+Sitemap: https://hussainabuidrees83.github.io/mycarmotor/sitemap.xml
