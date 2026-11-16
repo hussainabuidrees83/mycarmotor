@@ -1,9 +1,9 @@
-{{/* صور السيارة: ملفات JPG وPNG داخل static/images/cars/<اسم-المجلد>/ تُصغَّر تلقائياً.
+{{/* صور السيارة: ملفات JPG وPNG وAVIF داخل static/images/cars/<اسم-المجلد>/ تُصغَّر تلقائياً.
      يرجع قائمة: card (بطاقة) / large (المعرض) / thumb (مصغرة) / full (تكبير) */}}
 {{ $slug := .Params.imagesFolder | default .File.ContentBaseName }}
 {{ $out := slice }}
 {{ range sort (resources.Match (printf "cars/%s/*" $slug)) "Name" }}
-  {{ if or (eq .MediaType.Type "image/jpeg") (eq .MediaType.Type "image/png") }}
+  {{ if or (eq .MediaType.Type "image/jpeg") (eq .MediaType.Type "image/png") (eq .MediaType.Type "image/avif") }}
     {{ $card := .Fill "800x600 q80" }}
     {{ $large := .Fit "1400x1050 q82" }}
     {{ $thumb := .Fill "160x120 q70" }}
