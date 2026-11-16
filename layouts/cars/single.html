@@ -3,16 +3,16 @@
 {{ $imgs := partial "car-images.html" . }}
 {{ $msg := printf "%s: %s\n%s" (i18n "wa_intro") .Title .Permalink }}
 <div class="wrap detail">
-  <a class="back" href="{{ site.Home.RelPermalink }}#cars">← {{ i18n "back" }}</a>
+  {{ partial "breadcrumb.html" . }}
   <div class="detail-grid">
     <div class="gallery">
       <div class="slides" id="slides">
-        {{ range $i, $im := $imgs }}<div class="slide" data-full="{{ $im.full }}"><img src="{{ $im.large }}" alt="{{ $.Title }}" {{ if eq $i 0 }}fetchpriority="high"{{ else }}loading="lazy"{{ end }} decoding="async"></div>{{ end }}
+        {{ range $i, $im := $imgs }}<div class="slide" data-full="{{ $im.full }}"><img src="{{ $im.large }}" srcset="{{ $im.largeSrcset }}" sizes="(max-width: 960px) 100vw, 55vw" alt="{{ printf (i18n "car_image_alt") $.Title }}" width="{{ $im.largeWidth }}" height="{{ $im.largeHeight }}" {{ if eq $i 0 }}fetchpriority="high"{{ else }}loading="lazy"{{ end }} decoding="async"></div>{{ end }}
       </div>
       <span class="badge {{ $p.condition }}">{{ i18n $p.condition }}</span>{{ if $p.offer }}<span class="badge offer">🔥 {{ i18n "offer" }}</span>{{ end }}
       <span class="counter" id="counter">1 / {{ len $imgs }}</span>
       <div class="thumbs" id="thumbs">
-        {{ range $i, $im := $imgs }}<img src="{{ $im.thumb }}" alt="" data-i="{{ $i }}" loading="lazy" width="160" height="120">{{ end }}
+        {{ range $i, $im := $imgs }}<img src="{{ $im.thumb }}" alt="{{ printf (i18n "car_image_alt_index") $.Title (add $i 1) }}" data-i="{{ $i }}" loading="lazy" width="{{ $im.thumbWidth }}" height="{{ $im.thumbHeight }}">{{ end }}
       </div>
     </div>
 
@@ -24,7 +24,7 @@
         {{ with $p.monthly }}<div class="monthly"><small>{{ i18n "monthly" }}</small><b>{{ lang.FormatNumber 0 . }}</b> {{ i18n "currency" }} <small>{{ i18n "per_month" }}</small></div>{{ end }}
       </div>
 
-      <p class="seller">👤 {{ i18n "sales_rep" }}: <strong>{{ site.Params.seller }}</strong> · <a href="tel:{{ site.Params.phone }}" dir="ltr">{{ site.Params.phone }}</a></p>
+      <p class="seller">👤 {{ i18n "sales_rep" }}: <strong>{{ site.Params.seller }}</strong> · <a href="tel:{{ site.Params.phone }}" dir="ltr">{{ site.Params.phoneDisplay }}</a></p>
       <div class="actions cta">
         <a class="btn btn-wa" href="https://wa.me/{{ site.Params.whatsapp }}?text={{ $msg | urlquery }}">{{ i18n "whatsapp" }}</a>
         <a class="btn btn-primary" href="tel:{{ site.Params.phone }}">{{ i18n "call" }}</a>

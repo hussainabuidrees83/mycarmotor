@@ -1,9 +1,35 @@
 [tagline]
-other = "New & used cars at the best prices"
+other = "New cars listed by My Car Motor in Maqaba, Bahrain"
 [hero_sub]
-other = "Browse the cars available in our showroom with prices, warranty and monthly instalments"
+other = "Browse listed cars and contact us to ask about a vehicle"
 [browse]
 other = "Browse cars"
+[home_heading]
+other = "Car showroom in Maqaba, Bahrain"
+[hero_image_alt]
+other = "My Car Motor showroom in Bahrain"
+[car_image_alt]
+other = "%s listed for sale in Bahrain"
+[car_image_alt_index]
+other = "Photo %2$d of %1$s in Bahrain"
+[listing_contact]
+other = "For enquiries about cars listed in Maqaba, Bahrain, contact us:"
+[breadcrumb]
+other = "Breadcrumb"
+[not_found_title]
+other = "Page not found"
+[not_found_text]
+other = "We could not find that page. Return home or browse the cars."
+[back_home]
+other = "Back to home"
+[footer_navigation]
+other = "Site navigation"
+[about]
+other = "About"
+[contact_page]
+other = "Contact"
+[faq_page]
+other = "FAQ"
 [search_ph]
 other = "Search: brand, model, year, colour…"
 [all_conditions]

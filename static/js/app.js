@@ -53,12 +53,14 @@
     lb.innerHTML='<button type="button" class="lb-close" aria-label="close">\u2715</button>'+
       '<button type="button" class="lb-btn lb-left" aria-label="left">\u2039</button>'+
       '<button type="button" class="lb-btn lb-right" aria-label="right">\u203A</button>'+
-      '<span class="lb-count"></span><img alt="">';
+      '<span class="lb-count"></span><img>';
     document.body.appendChild(lb);
     var lbi=lb.querySelector('img'),lbc=lb.querySelector('.lb-count'),li=0;
     function show(i){
       li=(i+imgs.length)%imgs.length;
-      lbi.src=imgs[li].dataset.full||imgs[li].querySelector('img').src;
+      var source=imgs[li].querySelector('img');
+      lbi.src=imgs[li].dataset.full||source.src;
+      lbi.alt=source.alt;
       lbc.textContent=(li+1)+' / '+imgs.length;
     }
     function open(i){show(i);lb.hidden=false;document.body.style.overflow='hidden'}

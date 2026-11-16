@@ -3,12 +3,26 @@
 {{ $slug := .Params.imagesFolder | default .File.ContentBaseName }}
 {{ $out := slice }}
 {{ range sort (resources.Match (printf "cars/%s/*" $slug)) "Name" }}
-  {{ if or (eq .MediaType.Type "image/jpeg") (eq .MediaType.Type "image/png") (eq .MediaType.Type "image/avif") }}
-    {{ $card := .Fit "800x600 q80" }}
-    {{ $large := .Fit "1400x1050 q82" }}
-    {{ $thumb := .Fit "160x120 q70" }}
-    {{ $full := .Fit "2200x2200 q85" }}
-    {{ $out = $out | append (dict "card" $card.RelPermalink "large" $large.RelPermalink "thumb" $thumb.RelPermalink "full" $full.RelPermalink) }}
+  {{ if or (eq .MediaType.Type "image/jpeg") (eq .MediaType.Type "image/png") (eq .MediaType.Type "image/avif") (eq .MediaType.Type "image/webp") }}
+    {{ $cardSmall := .Fit "480x360 webp q78" }}
+    {{ $card := .Fit "800x600 webp q80" }}
+    {{ $largeSmall := .Fit "800x600 webp q80" }}
+    {{ $large := .Fit "1400x1050 webp q82" }}
+    {{ $thumb := .Fit "160x120 webp q70" }}
+    {{ $full := .Fit "2200x2200 webp q85" }}
+    {{ $out = $out | append (dict
+      "card" $card.RelPermalink
+      "cardWidth" $card.Width
+      "cardHeight" $card.Height
+      "cardSrcset" (printf "%s %dw, %s %dw" $cardSmall.RelPermalink $cardSmall.Width $card.RelPermalink $card.Width)
+      "large" $large.RelPermalink
+      "largeWidth" $large.Width
+      "largeHeight" $large.Height
+      "largeSrcset" (printf "%s %dw, %s %dw" $largeSmall.RelPermalink $largeSmall.Width $large.RelPermalink $large.Width)
+      "thumb" $thumb.RelPermalink
+      "thumbWidth" $thumb.Width
+      "thumbHeight" $thumb.Height
+      "full" $full.RelPermalink) }}
   {{ end }}
 {{ end }}
 {{ if not $out }}

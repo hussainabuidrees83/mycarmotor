@@ -1,0 +1,10 @@
+<nav class="breadcrumbs" aria-label="{{ i18n "breadcrumb" }}">
+  <ol>
+    <li><a href="{{ site.Home.RelPermalink }}">{{ site.Home.Title }}</a></li>
+    {{ if .Section }}
+      {{ $sectionPage := site.GetPage (printf "/%s" .Section) }}
+      {{ with $sectionPage }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}
+    {{ end }}
+    <li aria-current="page">{{ .Title }}</li>
+  </ol>
+</nav>

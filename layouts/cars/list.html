@@ -1,1 +1,9 @@
-{{ define "main" }}{{ partial "catalog.html" . }}{{ end }}
+{{ define "main" }}
+<section class="wrap seo-intro">
+  <h1>{{ .Title }}</h1>
+  {{ with .Content }}{{ . }}{{ end }}
+  <p>{{ i18n "listing_contact" }} <a href="tel:{{ site.Params.phone }}" dir="ltr">{{ site.Params.phoneDisplay }}</a>
+    · <a href="https://wa.me/{{ site.Params.whatsapp }}">{{ i18n "whatsapp" }}</a></p>
+</section>
+{{ partial "catalog.html" . }}
+{{ end }}

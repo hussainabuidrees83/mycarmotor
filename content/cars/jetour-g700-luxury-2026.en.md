@@ -1,5 +1,8 @@
 ---
 title: "Jetour G700 Luxury 2026"
+description: "Jetour G700 Luxury 2026 is a new car listed in Bahrain by My Car Motor in Maqaba. Contact us to ask about this vehicle."
+keywords: ["new cars for sale Bahrain","car showroom Bahrain","Jetour"]
+
 brand: "Jetour"
 condition: "new"
 year: 2026

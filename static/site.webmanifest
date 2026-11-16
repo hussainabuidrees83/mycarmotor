@@ -1,0 +1,17 @@
+{
+  "name": "My Car Motor",
+  "short_name": "My Car Motor",
+  "description": "My Car Motor showroom in Maqaba, Bahrain",
+  "start_url": "/mycarmotor/",
+  "scope": "/mycarmotor/",
+  "display": "standalone",
+  "background_color": "#f5f6f8",
+  "theme_color": "#0f4c81",
+  "icons": [
+    {
+      "src": "/mycarmotor/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,13 +1,20 @@
 {{ define "main" }}
+{{ $desktop := resources.Get "images/banner-desktop.jpg" }}
+{{ $desktopSmall := $desktop.Resize "800x webp q78" }}
+{{ $desktopLarge := $desktop.Resize "1400x webp q82" }}
+{{ $mobile := resources.Get "images/banner-mobile.jpg" }}
+{{ $mobileSmall := $mobile.Resize "640x webp q78" }}
+{{ $mobileLarge := $mobile.Resize "960x webp q82" }}
 <section class="banner">
   <picture>
-    <source media="(max-width: 640px)" srcset="{{ "images/banner-mobile.jpg" | relURL }}" width="1000" height="800">
-    <img src="{{ "images/banner-desktop.jpg" | relURL }}" width="1920" height="720" alt="{{ site.Title }}" fetchpriority="high">
+    <source media="(max-width: 640px)" srcset="{{ $mobileSmall.RelPermalink }} {{ $mobileSmall.Width }}w, {{ $mobileLarge.RelPermalink }} {{ $mobileLarge.Width }}w" sizes="100vw" width="{{ $mobileSmall.Width }}" height="{{ $mobileSmall.Height }}">
+    <img src="{{ $desktopLarge.RelPermalink }}" srcset="{{ $desktopSmall.RelPermalink }} {{ $desktopSmall.Width }}w, {{ $desktopLarge.RelPermalink }} {{ $desktopLarge.Width }}w"
+      sizes="100vw" width="{{ $desktopLarge.Width }}" height="{{ $desktopLarge.Height }}" alt="{{ i18n "hero_image_alt" }}" fetchpriority="high" decoding="async">
   </picture>
-  <h1 class="sr-only">{{ site.Title }}</h1>
 </section>
 <section class="hero-bar">
   <div class="wrap">
+    <h1>{{ i18n "home_heading" }}</h1>
     <p class="lead">{{ i18n "tagline" }}</p>
     <p class="sub">{{ i18n "hero_sub" }}</p>
     <div class="actions">
@@ -17,5 +24,6 @@
     </div>
   </div>
 </section>
+{{ with .Content }}<section class="wrap seo-intro">{{ . }}</section>{{ end }}
 {{ partial "catalog.html" . }}
 {{ end }}

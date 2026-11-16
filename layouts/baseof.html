@@ -1,25 +1,10 @@
 <!DOCTYPE html>
-<html lang="{{ site.Language.Lang }}" dir="{{ or site.Language.Direction "ltr" }}">
+<html lang="{{ site.Params.htmlLang | default site.Language.Lang }}" dir="{{ or site.Language.Direction "ltr" }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
-  {{ $description := .Params.description | default (i18n "tagline") }}
-  {{ $shareImage := "images/banner-desktop.jpg" | absURL }}
-  {{ if and .IsPage (eq .Type "cars") }}{{ $shareImage = (index (partial "car-images.html" .) 0).large | absURL }}{{ end }}
-  <meta name="description" content="{{ $description }}">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="{{ .Permalink }}">
-  <meta property="og:title" content="{{ .Title }}">
-  <meta property="og:description" content="{{ $description }}">
-  <meta property="og:image" content="{{ $shareImage }}">
-  <meta property="og:image:alt" content="{{ .Title }}">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ .Title }}">
-  <meta name="twitter:description" content="{{ $description }}">
-  <meta name="twitter:image" content="{{ $shareImage }}">
-  <meta name="twitter:image:alt" content="{{ .Title }}">
-  {{ range .AllTranslations }}<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">{{ end }}
+  {{ partial "seo.html" . }}
+  {{ partial "structured-data.html" . }}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">

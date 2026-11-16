@@ -27,6 +27,17 @@ nav{display:flex;align-items:center;gap:.6rem}
 .hero h1{margin:0;font-size:clamp(1.8rem,5vw,3rem);font-weight:800}
 .hero .lead{font-size:clamp(1.05rem,2.5vw,1.4rem);margin:.4rem 0;font-weight:600}
 .hero p{margin:.3rem auto;max-width:640px;opacity:.9}
+.hero-bar h1{margin:0;font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800}
+.seo-intro{padding:1.5rem 0}
+.seo-intro h1,.content-page h1{font-size:clamp(1.5rem,4vw,2.2rem);margin:0 0 .6rem}
+.seo-intro p{max-width:850px}
+.content-page{padding:1.5rem 0 3rem}
+.breadcrumbs{font-size:.9rem;margin:.5rem 0 1rem;color:var(--muted)}
+.breadcrumbs ol{display:flex;flex-wrap:wrap;gap:.45rem;list-style:none;padding:0;margin:0}
+.breadcrumbs li+li:before{content:"/";margin-inline-end:.45rem}
+.breadcrumbs a{color:var(--primary)}
+.not-found{padding:4rem 0;text-align:center}
+.not-found .actions{justify-content:center}
 .actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.4rem}
 .hero .actions{justify-content:center}
 
@@ -90,6 +101,8 @@ nav{display:flex;align-items:center;gap:.6rem}
 
 .site-footer{border-top:1px solid var(--line);padding:1.5rem 0;text-align:center;background:var(--card)}
 .site-footer p{margin:.2rem 0}
+.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;margin:.8rem 0}
+.footer-links a{color:var(--primary);font-weight:600}
 .float-wa{position:fixed;inset-inline-end:1rem;bottom:1rem;width:56px;height:56px;border-radius:50%;background:var(--wa);display:grid;place-items:center;font-size:1.6rem;box-shadow:0 6px 18px rgba(0,0,0,.3);z-index:30}
 .sticky-cta{display:none}
 

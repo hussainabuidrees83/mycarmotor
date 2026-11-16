@@ -1,36 +1,72 @@
 baseURL = "https://hussainabuidrees83.github.io/mycarmotor/"
-title = "Showroom"
+title = "My Car Motor"
+locale = "ar-BH"
 defaultContentLanguage = "ar"
 defaultContentLanguageInSubdir = false
 enableRobotsTXT = true
 disableKinds = ["taxonomy", "term"]
 
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.8
+  filename = "sitemap.xml"
+
 # ====== بيانات التواصل (غيّرها إلى رقمك) ======
 # phone: للاتصال المباشر | whatsapp: رقم واتساب بالصيغة الدولية بدون + وبدون مسافات
 [params]
   phone = "+97339550655"
+  phoneDisplay = "+973 3955 0655"
   whatsapp = "97339550655"
+  mapUrl = "https://maps.app.goo.gl/HHZo2mixZ9p6rmLAA?g_st=awb"
+  openingDays = ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"]
+  openingTime = "09:00"
+  closingTime = "17:00"
+  sameAs = [
+    "https://www.facebook.com/share/1FsQUEGLXM/",
+    "https://www.instagram.com/bahrain.cars.showroom?psln=NnA2Mm9vczF3eDk5",
+    "https://www.tiktok.com/@bahrain.car.showroom?_r=1&_t=ZS-9BSUEJYycbd"
+  ]
+  logo = "TODO: provide the official logo URL"
+  priceRange = "TODO: provide a verified price range"
+  latitude = "TODO: provide the showroom latitude"
+  longitude = "TODO: provide the showroom longitude"
 
 [languages]
   [languages.ar]
-    locale = "ar"
+    locale = "ar-BH"
     label = "العربية"
     direction = "rtl"
     weight = 1
     title = "ماي كار موتور"
     [languages.ar.params]
       seller = "حسين أبوادريس"
+      htmlLang = "ar-BH"
+      description = "معرض ماي كار موتور في مقابة، البحرين. تعرّف على السيارات الجديدة المعروضة وتواصل معنا هاتفيًا أو عبر واتساب."
+      addressLocality = "مقابة"
+      streetAddress = "شارع البديع، مقابة، مقابل بنك البحرين والكويت"
   [languages.en]
-    locale = "en"
+    locale = "en-BH"
     label = "English"
     direction = "ltr"
     weight = 2
     title = "My Car Motor"
     [languages.en.params]
       seller = "Hussain Abuidrees"
+      htmlLang = "en-BH"
+      description = "My Car Motor is a car showroom in Maqaba, Bahrain. Browse listed new cars and contact us by phone or WhatsApp."
+      addressLocality = "Maqaba"
+      streetAddress = "Budaiya Highway, Maqaba, opposite Bank of Bahrain and Kuwait"
 
 # ====== معالجة الصور تلقائياً ======
 # صور السيارات في static/images/cars تُقرأ أيضاً كـ assets ليغيّر Hugo أحجامها (بطاقة/معرض/مصغرة)
 [[module.mounts]]
   source = "static/images/cars"
   target = "assets/cars"
+
+[[module.mounts]]
+  source = "static/images/banner-desktop.jpg"
+  target = "assets/images/banner-desktop.jpg"
+
+[[module.mounts]]
+  source = "static/images/banner-mobile.jpg"
+  target = "assets/images/banner-mobile.jpg"

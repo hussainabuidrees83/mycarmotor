@@ -3,7 +3,10 @@
 <article class="card" data-title="{{ lower (printf "%s %s %s %v %s" .Title $p.brand $p.model $p.year $p.color) }}"
   data-brand="{{ $p.brand }}" data-cond="{{ $p.condition }}" data-price="{{ $p.price }}" data-order="{{ $p.weight | default 0 }}">
   <a href="{{ .RelPermalink }}" class="card-img">
-    <img src="{{ (index $imgs 0).card }}" alt="{{ .Title }}" loading="lazy" decoding="async" width="800" height="600">
+    {{ $image := index $imgs 0 }}
+    <img src="{{ $image.card }}" srcset="{{ $image.cardSrcset }}" sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 33vw"
+      alt="{{ printf (i18n "car_image_alt") .Title }}" loading="lazy" decoding="async"
+      width="{{ $image.cardWidth }}" height="{{ $image.cardHeight }}">
     <span class="badge {{ $p.condition }}">{{ i18n $p.condition }}</span>{{ if $p.offer }}<span class="badge offer">🔥 {{ i18n "offer" }}</span>{{ end }}
   </a>
   <div class="card-body">

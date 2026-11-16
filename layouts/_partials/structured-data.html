@@ -1,0 +1,95 @@
+{{- $homeURL := site.Home.Permalink -}}
+{{- $shop := site.Params -}}
+{{- $description := .Description | default .Params.description | default site.Params.description | default (i18n "tagline") -}}
+{{- $socialImage := "images/social-card.jpg" | absURL -}}
+{{- $organizationID := printf "%s#organization" $homeURL -}}
+{{- $organization := dict
+  "@type" (slice "Organization" "AutoDealer")
+  "@id" $organizationID
+  "name" site.Title
+  "url" $homeURL
+  "description" $description
+  "image" $socialImage
+  "telephone" $shop.phoneDisplay
+  "address" (dict "@type" "PostalAddress" "streetAddress" $shop.streetAddress "addressLocality" $shop.addressLocality "addressCountry" "BH")
+  "areaServed" (dict "@type" "Country" "name" "Bahrain")
+  "sameAs" $shop.sameAs
+  "hasMap" $shop.mapUrl
+-}}
+{{- $graph := slice $organization -}}
+{{- $website := dict
+  "@type" "WebSite"
+  "@id" (printf "%s#website" $homeURL)
+  "url" $homeURL
+  "name" site.Title
+  "description" $description
+  "inLanguage" site.Params.htmlLang
+  "publisher" (dict "@id" $organizationID)
+-}}
+{{- $graph = $graph | append $website -}}
+{{- if and $shop.logo (not (hasPrefix $shop.logo "TODO")) -}}
+  {{- $organization = merge $organization (dict "logo" (dict "@type" "ImageObject" "url" ($shop.logo | absURL))) -}}
+  {{- $graph = slice $organization $website -}}
+{{- end -}}
+{{- if and $shop.priceRange (not (hasPrefix $shop.priceRange "TODO")) -}}
+  {{- $organization = merge $organization (dict "priceRange" $shop.priceRange) -}}
+  {{- $graph = slice $organization $website -}}
+{{- end -}}
+{{- $openingDays := slice -}}
+{{- range $shop.openingDays -}}
+  {{- $openingDays = $openingDays | append (printf "https://schema.org/%s" .) -}}
+{{- end -}}
+{{- if $openingDays -}}
+  {{- $organization = merge $organization (dict "openingHoursSpecification" (slice (dict "@type" "OpeningHoursSpecification" "dayOfWeek" $openingDays "opens" $shop.openingTime "closes" $shop.closingTime))) -}}
+  {{- $graph = slice $organization $website -}}
+{{- end -}}
+{{- if and $shop.latitude $shop.longitude (not (hasPrefix $shop.latitude "TODO")) (not (hasPrefix $shop.longitude "TODO")) -}}
+  {{- $organization = merge $organization (dict "geo" (dict "@type" "GeoCoordinates" "latitude" $shop.latitude "longitude" $shop.longitude)) -}}
+  {{- $graph = slice $organization $website -}}
+{{- end -}}
+{{- if and .IsPage (eq .Section "cars") -}}
+  {{- $carImages := partial "car-images.html" . -}}
+  {{- $carImage := (index $carImages 0).large | absURL -}}
+  {{- $car := dict "@type" "Car" "@id" (printf "%s#vehicle" .Permalink) "name" .Title "url" .Permalink "image" $carImage -}}
+  {{- with .Params.brand -}}{{- $car = merge $car (dict "brand" (dict "@type" "Brand" "name" .)) -}}{{- end -}}
+  {{- $model := .Params.model -}}
+  {{- if not $model -}}
+    {{- $model = strings.TrimSpace (strings.TrimPrefix .Title .Params.brand) -}}
+    {{- with .Params.year -}}{{- $model = strings.TrimSpace (strings.TrimSuffix $model (printf " %v" .)) -}}{{- end -}}
+  {{- end -}}
+  {{- with $model -}}{{- $car = merge $car (dict "model" .) -}}{{- end -}}
+  {{- with .Params.year -}}{{- $car = merge $car (dict "vehicleModelDate" .) -}}{{- end -}}
+  {{- with .Params.fuel -}}{{- $car = merge $car (dict "fuelType" .) -}}{{- end -}}
+  {{- with .Params.condition -}}
+    {{- if eq . "new" -}}{{- $car = merge $car (dict "itemCondition" "https://schema.org/NewCondition") -}}{{- end -}}
+    {{- if eq . "used" -}}{{- $car = merge $car (dict "itemCondition" "https://schema.org/UsedCondition") -}}{{- end -}}
+  {{- end -}}
+  {{- if and (eq .Params.condition "used") .Params.mileage -}}
+    {{- $car = merge $car (dict "mileageFromOdometer" (dict "@type" "QuantitativeValue" "value" .Params.mileage "unitCode" "KMT")) -}}
+  {{- end -}}
+  {{- with .Params.price -}}
+    {{- $offer := dict "@type" "Offer" "url" $.Permalink "priceCurrency" "BHD" "price" . "seller" (dict "@id" $organizationID) -}}
+    {{- with $.Params.availability -}}{{- $offer = merge $offer (dict "availability" .) -}}{{- end -}}
+    {{- $car = merge $car (dict "offers" $offer) -}}
+  {{- end -}}
+  {{- $graph = $graph | append $car -}}
+{{- end -}}
+{{- if .Params.faq -}}
+  {{- $questions := slice -}}
+  {{- range .Params.faq -}}
+    {{- $questions = $questions | append (dict "@type" "Question" "name" .question "acceptedAnswer" (dict "@type" "Answer" "text" .answer)) -}}
+  {{- end -}}
+  {{- $graph = $graph | append (dict "@type" "FAQPage" "@id" (printf "%s#faq" .Permalink) "url" .Permalink "mainEntity" $questions) -}}
+{{- end -}}
+{{- if not .IsHome -}}
+  {{- $items := slice (dict "@type" "ListItem" "position" 1 "name" site.Home.Title "item" site.Home.Permalink) -}}
+  {{- if and .Section (ne .Kind "section") -}}
+    {{- $sectionPage := site.GetPage (printf "/%s" .Section) -}}
+    {{- if $sectionPage -}}
+      {{- $items = $items | append (dict "@type" "ListItem" "position" 2 "name" $sectionPage.Title "item" $sectionPage.Permalink) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $items = $items | append (dict "@type" "ListItem" "position" (add (len $items) 1) "name" .Title "item" .Permalink) -}}
+  {{- $graph = $graph | append (dict "@type" "BreadcrumbList" "@id" (printf "%s#breadcrumb" .Permalink) "itemListElement" $items) -}}
+{{- end -}}
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" $graph | jsonify | safeJS }}</script>

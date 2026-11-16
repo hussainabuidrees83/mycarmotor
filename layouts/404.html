@@ -1,0 +1,10 @@
+{{ define "main" }}
+<section class="wrap not-found">
+  <h1>{{ i18n "not_found_title" }}</h1>
+  <p>{{ i18n "not_found_text" }}</p>
+  <div class="actions">
+    <a class="btn btn-primary" href="{{ site.Home.RelPermalink }}">{{ i18n "back_home" }}</a>
+    <a class="btn btn-ghost" href="{{ "cars/" | relLangURL }}">{{ i18n "browse" }}</a>
+  </div>
+</section>
+{{ end }}
