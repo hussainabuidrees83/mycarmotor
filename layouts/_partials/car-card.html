@@ -1,5 +1,11 @@
 {{ $p := .Params }}
 {{ $imgs := partial "car-images.html" . }}
+{{ $chips := slice }}
+{{ with $p.warranty }}{{ $chips = $chips | append (dict "icon" "shield" "text" (printf "%s %s" (i18n "warranty_short") .)) }}{{ end }}
+{{ with $p.freeService }}{{ $chips = $chips | append (dict "icon" "wrench" "text" (printf "%s %s" (i18n "free_service") .)) }}{{ end }}
+{{ with $p.insReg }}{{ $chips = $chips | append (dict "icon" "clipboard" "text" (printf "%s %s" (i18n "ins_reg") .)) }}{{ end }}
+{{ if $p.tint }}{{ $chips = $chips | append (dict "icon" "sun" "text" (i18n "tint")) }}{{ end }}
+{{ if $p.undercoat }}{{ $chips = $chips | append (dict "icon" "layers" "text" (i18n "undercoat")) }}{{ end }}
 <article class="card" data-title="{{ lower (printf "%s %s %s %v %s" .Title $p.brand $p.model $p.year $p.color) }}"
   data-brand="{{ $p.brand }}" data-cond="{{ $p.condition }}" data-price="{{ $p.price }}" data-order="{{ $p.weight | default 0 }}">
   <a href="{{ .RelPermalink }}" class="card-img">
@@ -17,11 +23,7 @@
       {{ with $p.monthly }}<div class="monthly"><small>{{ i18n "monthly" }}</small><b>{{ lang.FormatNumber 0 . }}</b> {{ i18n "currency" }}</div>{{ end }}
     </div>
     <div class="chips">
-      {{ with $p.warranty }}<span>{{ partial "icon.html" "shield" }} {{ i18n "warranty_short" }} {{ . }}</span>{{ end }}
-      {{ with $p.freeService }}<span>{{ partial "icon.html" "wrench" }} {{ i18n "free_service" }} {{ . }}</span>{{ end }}
-      {{ with $p.insReg }}<span>{{ partial "icon.html" "clipboard" }} {{ i18n "ins_reg" }} {{ . }}</span>{{ end }}
-      {{ if $p.tint }}<span>{{ partial "icon.html" "sun" }} {{ i18n "tint" }}</span>{{ end }}
-      {{ if $p.undercoat }}<span>{{ partial "icon.html" "layers" }} {{ i18n "undercoat" }}</span>{{ end }}
+      {{ range first 3 $chips }}<span>{{ partial "icon.html" .icon }} {{ .text }}</span>{{ end }}
     </div>
   </div>
 </article>
