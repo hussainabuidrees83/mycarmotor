@@ -31,9 +31,9 @@
   if(slides){
     var imgs=[].slice.call(slides.children),tbox=$('#thumbs'),thumbs=[].slice.call(tbox.children),counter=$('#counter');
     var rtl=function(){return getComputedStyle(slides).direction==='rtl'};
-    var cur=0;
+    var curSlide=0;
     function mark(i){
-      cur=i;
+      curSlide=i;
       thumbs.forEach(function(t,k){t.classList.toggle('on',k===i)});
       counter.textContent=(i+1)+' / '+imgs.length;
       var t=thumbs[i],bb=tbox.getBoundingClientRect(),r=t.getBoundingClientRect();
