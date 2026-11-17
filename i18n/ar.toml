@@ -150,3 +150,5 @@ other = "الخميس"
 other = "الجمعة"
 [brand_filters]
 other = "تصفية حسب الماركة"
+[similar_cars]
+other = "سيارات مشابهة"

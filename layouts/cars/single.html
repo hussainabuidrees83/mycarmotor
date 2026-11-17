@@ -2,6 +2,27 @@
 {{ $p := .Params }}
 {{ $imgs := partial "car-images.html" . }}
 {{ $msg := printf "%s: %s\n%s" (i18n "wa_intro") .Title .Permalink }}
+{{ $cars := where site.RegularPages "Section" "cars" }}
+{{ $similar := slice }}
+{{ range $cars }}
+  {{ if and (ne .RelPermalink $.RelPermalink) (eq .Params.brand $p.brand) }}
+    {{ $similar = $similar | append . }}
+  {{ end }}
+{{ end }}
+{{ $similar = first 3 $similar }}
+{{ if lt (len $similar) 3 }}
+  {{ $closest := slice }}
+  {{ range $cars }}
+    {{ if and (ne .RelPermalink $.RelPermalink) (ne .Params.brand $p.brand) }}
+      {{ $distance := sub .Params.price $p.price }}
+      {{ if lt $distance 0 }}{{ $distance = mul $distance -1 }}{{ end }}
+      {{ $closest = $closest | append (dict "distance" $distance "page" .) }}
+    {{ end }}
+  {{ end }}
+  {{ range first (sub 3 (len $similar)) (sort $closest "distance") }}
+    {{ $similar = $similar | append .page }}
+  {{ end }}
+{{ end }}
 <div class="wrap detail">
   {{ partial "breadcrumb.html" . }}
   <div class="detail-grid">
@@ -64,6 +85,14 @@
     </div>
   </div>
 
+  {{ with $similar }}
+  <section class="similar-cars">
+    <h2 class="sec">{{ i18n "similar_cars" }}</h2>
+    <div class="grid">
+      {{ range . }}{{ partial "car-card.html" . }}{{ end }}
+    </div>
+  </section>
+  {{ end }}
 </div>
 
 <div class="sticky-cta">

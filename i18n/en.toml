@@ -150,3 +150,5 @@ other = "Thursday"
 other = "Friday"
 [brand_filters]
 other = "Filter by brand"
+[similar_cars]
+other = "Similar cars"
