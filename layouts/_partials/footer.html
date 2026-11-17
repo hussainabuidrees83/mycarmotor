@@ -2,7 +2,7 @@
   <div class="wrap">
     <p><strong>{{ site.Title }}</strong></p>
     <p>{{ i18n "sales_rep" }}: <strong>{{ site.Params.seller }}</strong></p>
-    <p>{{ i18n "contact_us" }}: <a href="tel:{{ site.Params.phone }}" dir="ltr">{{ site.Params.phoneDisplay }}</a></p>
+    <p>{{ i18n "contact_us" }}: {{ partial "icon.html" "phone" }} <a href="tel:{{ site.Params.phone }}" dir="ltr">{{ site.Params.phoneDisplay }}</a></p>
     <nav class="footer-links" aria-label="{{ i18n "footer_navigation" }}">
       <a href="{{ site.Home.RelPermalink }}">{{ site.Home.Title }}</a>
       <a href="{{ "cars/" | relLangURL }}">{{ i18n "browse" }}</a>
@@ -15,6 +15,6 @@
 </footer>
 {{ if not (and .IsPage (eq .Type "cars")) }}
 <a class="float-wa" aria-label="WhatsApp" href="https://wa.me/{{ site.Params.whatsapp }}">
-  💬
+  {{ partial "icon.html" "chat" }}
 </a>
 {{ end }}

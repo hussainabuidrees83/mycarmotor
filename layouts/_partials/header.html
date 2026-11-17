@@ -1,12 +1,12 @@
 <header class="site-header">
   <div class="wrap bar">
-    <a class="brand" href="{{ site.Home.RelPermalink }}">🚗 {{ site.Title }}</a>
+    <a class="brand" href="{{ site.Home.RelPermalink }}">{{ partial "icon.html" "car" }} {{ site.Title }}</a>
     <nav>
       {{ range .AllTranslations }}{{ if ne .Language.Lang site.Language.Lang }}
         {{ $hreflang := cond (eq .Language.Lang "ar") "ar-BH" "en-BH" }}
         <a class="lang" href="{{ .RelPermalink }}" hreflang="{{ $hreflang }}">{{ .Language.Label }}</a>
       {{ end }}{{ end }}
-      <a class="btn btn-sm btn-wa" href="https://wa.me/{{ site.Params.whatsapp }}">{{ i18n "whatsapp" }}</a>
+      <a class="btn btn-sm btn-wa" href="https://wa.me/{{ site.Params.whatsapp }}">{{ partial "icon.html" "chat" }} {{ i18n "whatsapp" }}</a>
     </nav>
   </div>
 </header>

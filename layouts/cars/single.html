@@ -9,7 +9,7 @@
       <div class="slides" id="slides">
         {{ range $i, $im := $imgs }}<div class="slide" data-full="{{ $im.full }}"><img src="{{ $im.large }}" srcset="{{ $im.largeSrcset }}" sizes="(max-width: 960px) 100vw, 55vw" alt="{{ printf (i18n "car_image_alt") $.Title }}" width="{{ $im.largeWidth }}" height="{{ $im.largeHeight }}" {{ if eq $i 0 }}fetchpriority="high"{{ else }}loading="lazy"{{ end }} decoding="async"></div>{{ end }}
       </div>
-      <span class="badge {{ $p.condition }}">{{ i18n $p.condition }}</span>{{ if $p.offer }}<span class="badge offer">🔥 {{ i18n "offer" }}</span>{{ end }}
+      <span class="badge {{ $p.condition }}">{{ i18n $p.condition }}</span>{{ if $p.offer }}<span class="badge offer">{{ partial "icon.html" "flame" }} {{ i18n "offer" }}</span>{{ end }}
       <span class="counter" id="counter">1 / {{ len $imgs }}</span>
       <div class="thumbs" id="thumbs">
         {{ range $i, $im := $imgs }}<img src="{{ $im.thumb }}" alt="{{ printf (i18n "car_image_alt_index") $.Title (add $i 1) }}" data-i="{{ $i }}" loading="lazy" width="{{ $im.thumbWidth }}" height="{{ $im.thumbHeight }}">{{ end }}
@@ -24,20 +24,20 @@
         {{ with $p.monthly }}<div class="monthly"><small>{{ i18n "monthly" }}</small><b>{{ lang.FormatNumber 0 . }}</b> {{ i18n "currency" }} <small>{{ i18n "per_month" }}</small></div>{{ end }}
       </div>
 
-      <p class="seller">👤 {{ i18n "sales_rep" }}: <strong>{{ site.Params.seller }}</strong> · <a href="tel:{{ site.Params.phone }}" dir="ltr">{{ site.Params.phoneDisplay }}</a></p>
+      <p class="seller">{{ i18n "sales_rep" }}: <strong>{{ site.Params.seller }}</strong> · {{ partial "icon.html" "phone" }} <a href="tel:{{ site.Params.phone }}" dir="ltr">{{ site.Params.phoneDisplay }}</a></p>
       <div class="actions cta">
-        <a class="btn btn-wa" href="https://wa.me/{{ site.Params.whatsapp }}?text={{ $msg | urlquery }}">{{ i18n "whatsapp" }}</a>
-        <a class="btn btn-primary" href="tel:{{ site.Params.phone }}">{{ i18n "call" }}</a>
-        <button class="btn btn-ghost" id="share" type="button" data-msg="{{ i18n "copied" }}" data-title="{{ .Title }}">{{ i18n "share" }}</button>
+        <a class="btn btn-wa" href="https://wa.me/{{ site.Params.whatsapp }}?text={{ $msg | urlquery }}">{{ partial "icon.html" "chat" }} {{ i18n "whatsapp" }}</a>
+        <a class="btn btn-primary" href="tel:{{ site.Params.phone }}">{{ partial "icon.html" "phone" }} {{ i18n "call" }}</a>
+        <button class="btn btn-ghost" id="share" type="button" data-msg="{{ i18n "copied" }}" data-title="{{ .Title }}">{{ partial "icon.html" "share" }} {{ i18n "share" }}</button>
       </div>
 
       <h2>{{ i18n "benefits" }}</h2>
       <ul class="benefits">
-        {{ with $p.warranty }}<li><span>🛡️</span><div><b>{{ i18n "warranty" }}</b><br>{{ . }}</div></li>{{ end }}
-        {{ with $p.insReg }}<li><span>📋</span><div><b>{{ i18n "ins_reg" }}</b><br>{{ . }}</div></li>{{ end }}
-        {{ with $p.freeService }}<li><span>🔧</span><div><b>{{ i18n "free_service" }}</b><br>{{ . }}</div></li>{{ end }}
-        {{ if $p.tint }}<li><span>☀️</span><div><b>{{ i18n "tint" }}</b><br>{{ i18n "included" }}</div></li>{{ end }}
-        {{ if $p.undercoat }}<li><span>🧰</span><div><b>{{ i18n "undercoat" }}</b><br>{{ i18n "included" }}</div></li>{{ end }}
+        {{ with $p.warranty }}<li>{{ partial "icon.html" "shield" }}<div><b>{{ i18n "warranty" }}</b><br>{{ . }}</div></li>{{ end }}
+        {{ with $p.insReg }}<li>{{ partial "icon.html" "clipboard" }}<div><b>{{ i18n "ins_reg" }}</b><br>{{ . }}</div></li>{{ end }}
+        {{ with $p.freeService }}<li>{{ partial "icon.html" "wrench" }}<div><b>{{ i18n "free_service" }}</b><br>{{ . }}</div></li>{{ end }}
+        {{ if $p.tint }}<li>{{ partial "icon.html" "sun" }}<div><b>{{ i18n "tint" }}</b><br>{{ i18n "included" }}</div></li>{{ end }}
+        {{ if $p.undercoat }}<li>{{ partial "icon.html" "layers" }}<div><b>{{ i18n "undercoat" }}</b><br>{{ i18n "included" }}</div></li>{{ end }}
       </ul>
 
       <h2>{{ i18n "specs" }}</h2>

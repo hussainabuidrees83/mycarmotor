@@ -7,7 +7,7 @@
     <img src="{{ $image.card }}" srcset="{{ $image.cardSrcset }}" sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 33vw"
       alt="{{ printf (i18n "car_image_alt") .Title }}" loading="lazy" decoding="async"
       width="{{ $image.cardWidth }}" height="{{ $image.cardHeight }}">
-    <span class="badge {{ $p.condition }}">{{ i18n $p.condition }}</span>{{ if $p.offer }}<span class="badge offer">🔥 {{ i18n "offer" }}</span>{{ end }}
+    <span class="badge {{ $p.condition }}">{{ i18n $p.condition }}</span>{{ if $p.offer }}<span class="badge offer">{{ partial "icon.html" "flame" }} {{ i18n "offer" }}</span>{{ end }}
   </a>
   <div class="card-body">
     <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
@@ -17,11 +17,11 @@
       {{ with $p.monthly }}<div class="monthly"><small>{{ i18n "monthly" }}</small><b>{{ lang.FormatNumber 0 . }}</b> {{ i18n "currency" }}</div>{{ end }}
     </div>
     <div class="chips">
-      {{ with $p.warranty }}<span>🛡️ {{ i18n "warranty_short" }} {{ . }}</span>{{ end }}
-      {{ with $p.freeService }}<span>🔧 {{ i18n "free_service" }} {{ . }}</span>{{ end }}
-      {{ with $p.insReg }}<span>📋 {{ i18n "ins_reg" }} {{ . }}</span>{{ end }}
-      {{ if $p.tint }}<span>☀️ {{ i18n "tint" }}</span>{{ end }}
-      {{ if $p.undercoat }}<span>🧰 {{ i18n "undercoat" }}</span>{{ end }}
+      {{ with $p.warranty }}<span>{{ partial "icon.html" "shield" }} {{ i18n "warranty_short" }} {{ . }}</span>{{ end }}
+      {{ with $p.freeService }}<span>{{ partial "icon.html" "wrench" }} {{ i18n "free_service" }} {{ . }}</span>{{ end }}
+      {{ with $p.insReg }}<span>{{ partial "icon.html" "clipboard" }} {{ i18n "ins_reg" }} {{ . }}</span>{{ end }}
+      {{ if $p.tint }}<span>{{ partial "icon.html" "sun" }} {{ i18n "tint" }}</span>{{ end }}
+      {{ if $p.undercoat }}<span>{{ partial "icon.html" "layers" }} {{ i18n "undercoat" }}</span>{{ end }}
     </div>
   </div>
 </article>
