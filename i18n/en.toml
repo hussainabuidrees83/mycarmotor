@@ -130,3 +130,21 @@ other = "Insurance & registration"
 other = "Warranty"
 [sales_rep]
 other = "Sales manager"
+[location_hours]
+other = "Location & opening hours"
+[open_maps]
+other = "Open in Google Maps"
+[day_Saturday]
+other = "Saturday"
+[day_Sunday]
+other = "Sunday"
+[day_Monday]
+other = "Monday"
+[day_Tuesday]
+other = "Tuesday"
+[day_Wednesday]
+other = "Wednesday"
+[day_Thursday]
+other = "Thursday"
+[day_Friday]
+other = "Friday"

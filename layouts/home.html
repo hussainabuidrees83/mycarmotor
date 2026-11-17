@@ -26,4 +26,21 @@
 </section>
 {{ with .Content }}<section class="wrap seo-intro">{{ . }}</section>{{ end }}
 {{ partial "catalog.html" . }}
+<section class="wrap location">
+  <h2 class="sec">{{ i18n "location_hours" }}</h2>
+  <div class="location-card">
+    <div class="location-item">
+      {{ partial "icon.html" "map-pin" }}
+      <p>{{ site.Params.streetAddress }}<br>{{ site.Params.addressLocality }}</p>
+    </div>
+    <div class="location-item">
+      {{ partial "icon.html" "clock" }}
+      <p>{{ range $i, $day := site.Params.openingDays }}{{ if $i }}, {{ end }}{{ i18n (printf "day_%s" $day) }}{{ end }}<br>{{ site.Params.openingTime }}–{{ site.Params.closingTime }}</p>
+    </div>
+    <div class="location-actions">
+      <a class="btn btn-primary" href="{{ site.Params.mapUrl }}" target="_blank" rel="noopener noreferrer">{{ i18n "open_maps" }}</a>
+      <a class="btn btn-ghost" href="tel:{{ site.Params.phone }}">{{ partial "icon.html" "phone" }} {{ i18n "call" }}</a>
+    </div>
+  </div>
+</section>
 {{ end }}

@@ -130,3 +130,21 @@ other = "التأمين والتسجيل"
 other = "ضمان"
 [sales_rep]
 other = "مسؤول المبيعات"
+[location_hours]
+other = "موقعنا وأوقات الدوام"
+[open_maps]
+other = "افتح في خرائط جوجل"
+[day_Saturday]
+other = "السبت"
+[day_Sunday]
+other = "الأحد"
+[day_Monday]
+other = "الاثنين"
+[day_Tuesday]
+other = "الثلاثاء"
+[day_Wednesday]
+other = "الأربعاء"
+[day_Thursday]
+other = "الخميس"
+[day_Friday]
+other = "الجمعة"
