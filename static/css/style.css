@@ -1,5 +1,5 @@
-:root{--bg:#f5f6f8;--card:#fff;--text:#14181f;--muted:#6b7280;--primary:#0f4c81;--primary-d:#0a3558;--wa:#128c4a;--line:#e5e7eb;--accent:#e8f1fa;--r:16px;--shadow:0 6px 24px rgba(15,30,60,.08)}
-@media(prefers-color-scheme:dark){:root{--bg:#0e1116;--card:#171b22;--text:#eef1f5;--muted:#9aa3b0;--line:#272d38;--accent:#1b2b3d;--shadow:none}}
+:root{--bg:#f5f6f8;--card:#fff;--text:#14181f;--muted:#6b7280;--primary:#0f4c81;--primary-d:#0a3558;--wa:#128c4a;--placeholder:#cfd6df;--line:#e5e7eb;--accent:#e8f1fa;--r:16px;--shadow:0 6px 24px rgba(15,30,60,.08)}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1116;--card:#171b22;--text:#eef1f5;--muted:#9aa3b0;--line:#272d38;--accent:#1b2b3d;--placeholder:#252b34;--shadow:none}}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;font-family:"Cairo",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
@@ -48,8 +48,8 @@ nav{display:flex;align-items:center;gap:.6rem}
 .card{background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);display:flex;flex-direction:column;transition:.2s}
 .card:hover{transform:translateY(-3px)}
 .card[hidden]{display:none}
-.card-img{position:relative;aspect-ratio:4/3;background:#cfd6df;display:block;overflow:hidden}
-.card-img img{width:100%;height:100%;object-fit:contain}
+.card-img{position:relative;aspect-ratio:4/3;background:var(--placeholder);display:block;overflow:hidden}
+.card-img img{width:100%;height:100%;object-fit:cover;object-position:center}
 .badge{position:absolute;top:.7rem;inset-inline-start:.7rem;padding:.15rem .7rem;border-radius:99px;font-size:.8rem;font-weight:700;color:#fff;background:#16a34a;z-index:2}
 .badge.used{background:#d97706}
 .card-body{padding:1rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
@@ -133,7 +133,7 @@ nav{display:flex;align-items:center;gap:.6rem}
 .hero-bar .actions{justify-content:center}
 .btn-light{background:#fff;color:var(--primary-d)}
 @media(max-width:640px){.banner img{aspect-ratio:5/4}}
-.card-img img,.thumbs img{background:#cfd6df}
+.card-img img,.thumbs img{background:var(--placeholder)}
 
 body{overflow-x:clip}
 .lightbox{position:fixed;left:0;top:0;width:100%;height:100vh;height:100dvh;background:rgba(0,0,0,.96);z-index:1000;display:flex;align-items:center;justify-content:center;touch-action:pan-y pinch-zoom}
