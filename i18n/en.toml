@@ -148,3 +148,5 @@ other = "Wednesday"
 other = "Thursday"
 [day_Friday]
 other = "Friday"
+[brand_filters]
+other = "Filter by brand"

@@ -1,6 +1,10 @@
 {{ $cars := where site.RegularPages "Section" "cars" }}
 {{ $brands := slice }}{{ range $cars }}{{ $brands = $brands | append .Params.brand }}{{ end }}
 <section id="cars" class="wrap">
+  <div class="brand-filters" role="group" aria-label="{{ i18n "brand_filters" }}">
+    <button class="brand-filter is-active" type="button" data-brand-filter="" aria-pressed="true">{{ i18n "all_brands" }}</button>
+    {{ range sort (uniq $brands) }}<button class="brand-filter" type="button" data-brand-filter="{{ . }}" aria-pressed="false">{{ . }}</button>{{ end }}
+  </div>
   <div class="filters">
     <input id="q" type="search" placeholder="{{ i18n "search_ph" }}" aria-label="search">
     <select id="f-cond"><option value="">{{ i18n "all_conditions" }}</option><option value="new">{{ i18n "new" }}</option><option value="used">{{ i18n "used" }}</option></select>

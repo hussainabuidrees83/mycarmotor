@@ -6,7 +6,15 @@
   if(grid){
     var cards=[].slice.call(grid.children);
     var q=$('#q'),cond=$('#f-cond'),brand=$('#f-brand'),max=$('#f-max'),sort=$('#f-sort');
+    var brandButtons=[].slice.call(document.querySelectorAll('[data-brand-filter]'));
     var norm=function(s){return (s||'').toLowerCase().replace(/[\u064B-\u065F]/g,'').replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').trim()};
+    function syncBrandButtons(){
+      brandButtons.forEach(function(button){
+        var active=button.dataset.brandFilter===brand.value;
+        button.classList.toggle('is-active',active);
+        button.setAttribute('aria-pressed',active?'true':'false');
+      });
+    }
     function apply(){
       var t=norm(q.value).split(/\s+/).filter(Boolean),m=parseFloat(max.value),n=0;
       cards.forEach(function(c){
@@ -22,8 +30,16 @@
       $('#count').textContent=n; $('#empty').hidden=n>0;
     }
     [q,max].forEach(function(e){e.addEventListener('input',apply)});
-    [cond,brand,sort].forEach(function(e){e.addEventListener('change',apply)});
-    $('#f-reset').addEventListener('click',function(){q.value=max.value=cond.value=brand.value=sort.value='';apply()});
+    [cond,sort].forEach(function(e){e.addEventListener('change',apply)});
+    brand.addEventListener('change',function(){syncBrandButtons();apply()});
+    brandButtons.forEach(function(button){
+      button.addEventListener('click',function(){
+        brand.value=button.dataset.brandFilter;
+        brand.dispatchEvent(new Event('change'));
+      });
+    });
+    syncBrandButtons();
+    $('#f-reset').addEventListener('click',function(){q.value=max.value=cond.value=brand.value=sort.value='';syncBrandButtons();apply()});
   }
 
   /* ===== معرض الصور ===== */

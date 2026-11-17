@@ -148,3 +148,5 @@ other = "الأربعاء"
 other = "الخميس"
 [day_Friday]
 other = "الجمعة"
+[brand_filters]
+other = "تصفية حسب الماركة"
